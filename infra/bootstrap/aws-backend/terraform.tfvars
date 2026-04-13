@@ -1,0 +1,6 @@
+aws_region                  = "eu-west-1"
+project_name                = "multi-cloud-platform"
+environment                 = "shared"
+owner                       = "selcuk"
+terraform_state_bucket_name = "multi-cloud-platform-tfstate-bucket59-eu-west-1"
+terraform_lock_table_name   = "multi-cloud-platform-tflock"
