@@ -1,0 +1,6 @@
+location                         = "West Europe"
+project_name                     = "multi-cloud-platform"
+environment                      = "shared"
+owner                            = "selcuk"
+terraform_storage_account_name   = "multicloudtfstate01"
+terraform_storage_container_name = "tfstate-container"
