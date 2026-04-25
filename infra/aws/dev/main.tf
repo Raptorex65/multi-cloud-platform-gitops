@@ -49,11 +49,17 @@ module "aws-eks" {
 
 module "aws-eks-addons" {
   source = "../../modules/aws-eks-addons"
-  
+
+  aws_region = var.aws_region
+  vpc_id             = module.aws-network.vpc_id
   cluster_name       = module.aws-eks.cluster_name
   cluster_version    = var.cluster_version
   oidc_provider_arn  = module.aws-eks.oidc_provider_arn
   oidc_provider_url  = module.aws-eks.oidc_provider_url
   tags               = local.common_tags
   
+  enable_ebs_csi = true
+  enable_vpc_cni = true
+  enable_coredns = true
+  enable_alb_controller = false
 }
