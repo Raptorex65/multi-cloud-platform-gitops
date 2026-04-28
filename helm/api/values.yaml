@@ -1,0 +1,12 @@
+replicaCount: 2
+
+image:
+  repository: 075897120159.dkr.ecr.eu-west-1.amazonaws.com/multi-cloud/api
+  tag: dev
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+env: []
