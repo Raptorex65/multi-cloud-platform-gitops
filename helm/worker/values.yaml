@@ -1,0 +1,8 @@
+replicaCount: 1
+
+image:
+  repository: 075897120159.dkr.ecr.eu-west-1.amazonaws.com/multi-cloud/worker
+  tag: dev
+  pullPolicy: IfNotPresent
+
+env: []
