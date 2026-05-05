@@ -22,7 +22,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: frontend-dev-frontend
+                name: frontend-dev-v2-frontend
                 port:
                   number: 80
           - path: /health
