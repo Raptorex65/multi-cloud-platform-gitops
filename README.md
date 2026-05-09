@@ -1,4 +1,4 @@
-## Project Structure
+# Multi-Cloud Platform (GitOps)
 
 This platform is split into two repositories:
 
@@ -8,34 +8,102 @@ This platform is split into two repositories:
 - multi-cloud-platform-gitops  
   → infrastructure, Kubernetes manifests, GitOps, and environment management
 
+This repository contains the **infrastructure, platform, and GitOps definitions** for the multi-cloud microservices platform. We can define this repo as **platform layer** of a multi-cloud microservices system. It is responsible for:
+- infrastructure provisioning (Terraform)
+- Kubernetes deployment definitions (Helm)
+- GitOps automation (Argo CD)
+- environment management
+
+This repo contains everything related to deployment and platform control:
+```text
+  •	Kubernetes manifests or Helm values 
+  •	Argo CD applications 
+  •	Argo Rollouts manifests 
+  •	environment overlays 
+  •	AWS and Azure deployment definitions 
+  •	ingress config 
+  •	HPA 
+  •	requests/limits 
+  •	Vault integration manifests 
+  •	monitoring stack manifests 
+  •	IaC for AWS and Azure 
+  •	docs and architecture diagrams 
+```
+---
+## ⚙️ Platform Stack
+
+- AWS EKS (Kubernetes)
+- Argo CD (GitOps controller)
+- Helm (application packaging)
+- AWS ALB Controller (Ingress)
+- Amazon ECR (container registry)
+
 ---
 
-# 15. Repo 2 README starter text
+## 🧠 Core Idea
 
-## `multi-cloud-platform-gitops/README.md`
+This project follows a **GitOps architecture**:
+
+```text
+Git = source of truth
+Argo CD = deployment engine
+Kubernetes = runtime
+```
+No component deploys directly to the cluster except Argo CD.
+This repo contains everything related to running the system, not building it.
+```text
+✔ infrastructure (AWS/Azure)
+✔ Kubernetes manifests
+✔ Helm charts
+✔ Argo CD applications
+✔ environment configuration
+```
 
 ```md
-# Multi-Cloud Platform GitOps
+## Deployment Flow
 
-This repository contains platform, infrastructure, and GitOps definitions for the multi-cloud microservices platform project.
+Developer pushes code
+        ↓
+GitHub Actions builds image
+        ↓
+Image pushed to ECR (tag = git SHA)
+        ↓
+CI updates GitOps repo (values.yaml)
+        ↓
+Argo CD detects change
+        ↓
+Cluster automatically updates
 
-## Scope
+## Argo CD (App of Apps)
+We use the App of Apps pattern:
 
-- AWS infrastructure definitions
-- Azure infrastructure definitions
-- GitOps application structure
-- Argo CD bootstrap and applications
-- environment overlays for dev, stage, and prod
-- Vault, observability, ingress, certs, and rollout platform definitions
+root-app
+  ↓
+creates:
+  api
+  frontend
+  worker
+  ingress
 
-## Cloud Model
+Bootstrap:
 
-- AWS = primary production path
-- Azure = equivalent secondary implementation
+kubectl apply -f gitops/argocd/root-app.yaml
 
-## Current Sprint
+## Full Platform Bootstrap
 
-Sprint 0:
-- repository bootstrap
-- folder structure for AWS, Azure, and GitOps layout
-- architecture and documentation placeholders
+Environments
+  - dev
+  - stage
+  - prod
+
+Each environment defines:
+  - values files
+  - ingress routing
+  - deployment configuration
+  
+terraform apply
+aws eks update-kubeconfig ...
+
+kubectl apply -f gitops/argocd/root-app.yaml
+
+👉 This recreates the entire platform.
