@@ -15,19 +15,5 @@ spec:
     path: helm/api
     repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
     targetRevision: main
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: LogicalID:
-        Type: AWS::Route53Resolver::FirewallRuleGroupAssociation
-        Properties:
-          FirewallRuleGroupId: "String" # Required
-          MutationProtection: "String"
-          Name: "String"
-          Priority: "Number" # Required
-          Tags: 
-            - Key: "String"
-              Value: "String"
-          VpcId: "String" # Required
     syncOptions:
       - CreateNamespace=true

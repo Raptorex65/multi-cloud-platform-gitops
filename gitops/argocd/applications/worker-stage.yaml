@@ -15,9 +15,5 @@ spec:
     path: helm/worker
     repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
     targetRevision: main
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: false
     syncOptions:
       - CreateNamespace=true
