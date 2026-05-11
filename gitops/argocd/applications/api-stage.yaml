@@ -17,7 +17,17 @@ spec:
     targetRevision: main
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false
+      selfHeal: LogicalID:
+        Type: AWS::Route53Resolver::FirewallRuleGroupAssociation
+        Properties:
+          FirewallRuleGroupId: "String" # Required
+          MutationProtection: "String"
+          Name: "String"
+          Priority: "Number" # Required
+          Tags: 
+            - Key: "String"
+              Value: "String"
+          VpcId: "String" # Required
     syncOptions:
       - CreateNamespace=true
