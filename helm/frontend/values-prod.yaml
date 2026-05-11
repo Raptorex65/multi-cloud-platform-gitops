@@ -1,4 +1,2 @@
-replicaCount: 3
-
 image:
-  tag: prod
+  tag: b29f228
