@@ -1,4 +1,3 @@
 replicaCount: 2
-
 image:
-  tag: dev
+  tag: b29f228
