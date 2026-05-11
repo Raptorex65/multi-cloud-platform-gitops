@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-prod-v2
+  namespace: argocd
+spec:
+  destination:
+    namespace: microservices-prod
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: gitops/apps/microservices-platform/aws/dev/ingress
+    repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
+    targetRevision: main
+    syncOptions:
+      - CreateNamespace=true
