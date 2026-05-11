@@ -12,5 +12,6 @@ spec:
     path: gitops/apps/microservices-platform/aws/dev/ingress
     repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
     targetRevision: main
+  syncPolicy:
     syncOptions:
       - CreateNamespace=true
