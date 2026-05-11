@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: api-stage-v2
+  namespace: argocd
+spec:
+  destination:
+    namespace: microservices-stage
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values-stage.yaml
+    path: helm/api
+    repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
