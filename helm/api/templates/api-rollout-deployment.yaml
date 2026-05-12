@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: api-rollout-deploy
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: {}
+        - setWeight: 50
+        - pause: {}
+
+  selector:
+    matchLabels:
+      app: {{ include "api.fullname" . }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ include "api.fullname" . }}
+    spec:
+      containers:
+        - name: {{ include "api.fullname" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
