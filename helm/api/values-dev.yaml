@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 5
 image:
   tag: 3c6bdb3
   pullPolicy: IfNotPresent
