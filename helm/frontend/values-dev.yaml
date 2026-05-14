@@ -1,3 +1,4 @@
 replicaCount: 2
 image:
   tag: b29f228
+  repository: multicloudplatformazuredevacr.azurecr.io/multi-cloud/frontend
