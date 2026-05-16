@@ -14,6 +14,10 @@ spec:
         - pause: { duration: 30s }
         - setWeight: 100
 
+      trafficRouting:
+        nginx:
+          stableIngress: platform-ingress
+          
   selector:
     matchLabels:
       app: {{ include "api.fullname" . }}
