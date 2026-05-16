@@ -9,9 +9,10 @@ spec:
     canary:
       steps:
         - setWeight: 20
-        - pause: {}
+        - pause: { duration: 30s }
         - setWeight: 50
-        - pause: {}
+        - pause: { duration: 30s }
+        - setWeight: 100
 
   selector:
     matchLabels:
@@ -31,12 +32,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 15
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 5
             periodSeconds: 5
