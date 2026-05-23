@@ -1,5 +1,5 @@
 replicaCount: 2
 image:
-  tag: a653fd6
+  tag: 9f1153d
   repository: multicloudplatformazuredevacr.azurecr.io/multi-cloud/api
   pullPolicy: IfNotPresent
