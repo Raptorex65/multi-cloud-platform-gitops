@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend-azure-stage-v2
+  namespace: argocd
+spec:
+  destination:
+    namespace: microservices-stage
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values-azure-stage.yaml
+    path: helm/frontend
+    repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
+    targetRevision: main
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
