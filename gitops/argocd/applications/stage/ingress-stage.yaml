@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: gitops/apps/microservices-platform/azure/dev
+    path: gitops/apps/microservices-platform/azure/stage
     repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
     targetRevision: main
   syncPolicy:
