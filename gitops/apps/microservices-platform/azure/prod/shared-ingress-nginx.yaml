@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: platform-ingress
+  name: platform-ingress-prod
   namespace: microservices-prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
