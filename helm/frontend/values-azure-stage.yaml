@@ -1,0 +1,4 @@
+image:
+  repository: multicloudplatformazuredevacr.azurecr.io/multi-cloud/frontend
+  tag: 510fbb7
+  pullPolicy: IfNotPresent
