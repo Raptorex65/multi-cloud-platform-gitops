@@ -21,6 +21,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: frontend-dev-v2-frontend
+                name: frontend-azure-stage-v2-frontend
                 port:
                   number: 80
