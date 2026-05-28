@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: platform-ingress-prod
+  name: platform-ingress
   namespace: microservices-prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -14,13 +14,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: api-service
+                name: api-stable-service
                 port:
                   number: 80
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: frontend-dev-v2-frontend
+                name: frontend-prod-azure-v2-frontend
                 port:
                   number: 80
