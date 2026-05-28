@@ -1,7 +1,0 @@
-# helm/api/values-azure-stage.yaml
-replicaCount: 2
-
-image:
-  repository: multicloudplatformazuredevacr.azurecr.io/multi-cloud/api
-  tag: 500e92f
-  pullPolicy: IfNotPresent
