@@ -2,12 +2,27 @@
 *.tmp
 *.swp
 
-**/.terraform/*
+# Terraform
+.terraform/
 *.tfstate
 *.tfstate.*
-*.tfstate.backup
-*.terraform.lock.hcl
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+errored.tfstate
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
 tfplan
+
+# CLI config
+.terraformrc
+terraform.rc
+
+# Sensitive vars
+*.tfvars.json
 
 
 k8s-starter-templates/
