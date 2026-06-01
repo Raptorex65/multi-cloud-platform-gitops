@@ -1,5 +1,5 @@
 # helm/api/values-azure-stage.yaml
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: multicloudplatformazuredevacr.azurecr.io/multi-cloud/api
