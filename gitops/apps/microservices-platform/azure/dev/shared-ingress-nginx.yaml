@@ -8,9 +8,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: dev.4.231.82.88.nip.io  
+      http:
         paths:
-          - path: /dev/api
+          - path: /api
             pathType: Prefix
             backend:
               service:
