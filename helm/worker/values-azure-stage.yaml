@@ -1,3 +1,5 @@
+replicaCount: 1
+
 image:
   tag: 510fbb7
   repository: multicloudplatformazuredevacr.azurecr.io/multi-cloud/worker
