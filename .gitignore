@@ -12,3 +12,4 @@ tfplan
 
 k8s-starter-templates/
 kubectl-argo-rollouts.exe
+platform/
