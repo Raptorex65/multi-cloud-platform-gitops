@@ -47,3 +47,11 @@ resource "azurerm_role_assignment" "aks_acr_pull" {
   role_definition_name = "AcrPull"
   principal_id         = module.aks.kubelet_identity_object_id
 }
+
+module "multi-cloud-platform-dev-kv" {
+  source = "../../modules/azure-keyvault"
+
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  common_tags         = local.common_tags
+}
