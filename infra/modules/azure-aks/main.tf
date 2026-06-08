@@ -3,7 +3,8 @@ resource "azurerm_kubernetes_cluster" "main" {
   location            = var.location
   resource_group_name = var.rg_name
   dns_prefix          = "${var.prefix}-aks"
-
+  oidc_issuer_enabled       = true
+  workload_identity_enabled = true
   default_node_pool {
     name           = "system"
     node_count     = 1
