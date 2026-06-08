@@ -55,3 +55,14 @@ module "multi-cloud-platform-dev-kv" {
   location            = azurerm_resource_group.main.location
   common_tags         = local.common_tags
 }
+
+module "eso_workload_identity" {
+  source = "../../modules/azure-workload-identity"
+
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  prefix              = local.resource_prefix
+  common_tags         = local.common_tags
+  oidc_issuer_url     = module.aks.oidc_issuer_url
+  key_vault_id        = module.multi-cloud-platform-dev-kv.key_vault_id
+}
