@@ -228,3 +228,36 @@ PROD   ✓ Released
 ```
 
 This ensures production deployments use previously validated artifacts and minimizes deployment risk.
+
+## GitOps-Managed Secrets
+
+The dev environment includes a dedicated Argo CD application for secret management.
+
+```text
+secrets-dev
+```
+
+This application manages:
+
+* SecretStore
+* ExternalSecret
+
+The SecretStore defines the connection to Azure Key Vault using Workload Identity.
+
+The ExternalSecret maps a Key Vault secret to a native Kubernetes Secret.
+
+```text
+Git
+ ↓
+Argo CD
+ ↓
+SecretStore / ExternalSecret
+ ↓
+External Secrets Operator
+ ↓
+Kubernetes Secret
+ ↓
+Application Pod
+```
+
+This keeps secret synchronization declarative and GitOps-managed while keeping secret values outside the repository.
