@@ -106,3 +106,50 @@ helm/
 Documentation:
 
 docs/
+
+---
+
+## Azure Secret Management
+
+The Azure platform includes centralized secret management using Azure Key Vault and External Secrets Operator.
+
+Implemented components:
+
+* Azure Key Vault
+* Azure RBAC authorization
+* User Assigned Managed Identity
+* Federated Identity Credential
+* AKS Workload Identity
+* External Secrets Operator
+* SecretStore
+* ExternalSecret
+
+Secret flow:
+
+```text
+Azure Key Vault
+      ↓
+External Secrets Operator
+      ↓
+Kubernetes Secret
+      ↓
+Application Pod
+```
+
+A test secret stored in Azure Key Vault was successfully synchronized into Kubernetes and consumed by the API pod as an environment variable.
+
+Validation:
+
+```bash
+kubectl exec -n microservices-dev <api-pod> -- printenv APP_PASSWORD
+```
+
+Result:
+
+```text
+super-password-123
+```
+
+This confirms end-to-end secret synchronization without storing sensitive values in Git, Helm values, or Kubernetes manifests.
+
+---
