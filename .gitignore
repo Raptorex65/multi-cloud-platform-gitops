@@ -16,6 +16,7 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 tfplan
+**/.terraform.lock.hcl
 
 # CLI config
 .terraformrc
