@@ -3,42 +3,26 @@ kind: Application
 metadata:
   name: observability-dev
   namespace: argocd
+
 spec:
   project: default
-
-  source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 77.0.0
-    helm:
-      values: |
-        crds:
-          enabled: true
-
-        grafana:
-          enabled: true
-          service:
-            type: ClusterIP
-
-        prometheusOperator:
-          admissionWebhooks:
-            enabled: false
-          tls:
-            enabled: false
-
-        prometheus:
-          prometheusSpec:
-            retention: 2d
-        
-        alertmanager:
-          enabled: false
-
-        nodeExporter:
-          enabled: false
-          
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
+
+  sources:
+  # Source 1 => Helm chart comes from external repository
+  - repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 77.0.0
+    helm:
+      valueFiles:
+        - $values/gitops/apps/observability/azure/dev/kube-prometheus-stack-values.yaml
+
+  # Source 2 => Custom files come from our GitOps repo
+  - repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
+    targetRevision: main
+    ref: values
 
   syncPolicy:
     automated:
@@ -46,4 +30,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true
