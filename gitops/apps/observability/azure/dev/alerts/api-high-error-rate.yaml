@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: api-high-error-rate
+  namespace: observability
+  labels:
+    release: observability-dev
+spec:
+  groups:
+    - name: api-alerts
+      rules:
+        - alert: APIHighErrorRate
+          expr: sum(rate(api_http_requests_total{namespace="microservices-dev",status_code=~"5.."}[5m])) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "API is returning 5xx errors"
+            description: "The API has returned 5xx responses in the last 5 minutes."
