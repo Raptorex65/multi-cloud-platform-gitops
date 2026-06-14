@@ -19,10 +19,10 @@ spec:
       valueFiles:
         - $values/gitops/apps/observability/azure/dev/kube-prometheus-stack-values.yaml
 
-  # Source 2 => Custom files come from our GitOps repo
+  # Source 2 => Dashboard config json utilized with kustomize
   - repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
     targetRevision: main
-    ref: values
+    path: gitops/apps/observability/azure/dev/
 
   syncPolicy:
     automated:
