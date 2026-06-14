@@ -10,7 +10,7 @@ grafana:
   sidecar:
     dashboards:
       enabled: true
-    searchNamespace: observability
+      searchNamespace: observability
     datasources:
       enabled: true
 
