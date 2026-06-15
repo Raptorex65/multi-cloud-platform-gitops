@@ -30,6 +30,10 @@ spec:
     targetRevision: main
     path: gitops/apps/observability/azure/dev/alerts
   
+  - repoURL: https://github.com/Raptorex65/multi-cloud-platform-gitops.git
+    targetRevision: main
+    path: gitops/apps/observability/azure/dev/secrets
+
   syncPolicy:
     automated:
       prune: true
