@@ -17,4 +17,4 @@ spec:
             sum(rate(api_http_requests_total{
               namespace="microservices-dev",
               status_code=~"5.."
-            }[1m]))
+            }[1m])) or vector(0)
