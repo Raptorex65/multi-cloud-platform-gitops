@@ -15,8 +15,18 @@ spec:
       steps:
       - setWeight: 20
       - pause: { duration: 30s }
+
+      - analysis:
+          templates:
+            - templateName: api-error-rate-analysis
+
       - setWeight: 50
       - pause: { duration: 30s }
+
+      - analysis:
+          templates:
+            - templateName: api-error-rate-analysis
+
       - setWeight: 100
         
   selector:

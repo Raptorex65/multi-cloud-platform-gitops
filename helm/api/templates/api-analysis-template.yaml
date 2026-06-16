@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: api-error-rate-analysis
+  namespace: {{ .Values.namespace | default "microservices-dev" }}
+spec:
+  metrics:
+    - name: api-5xx-rate
+      interval: 30s
+      count: 3
+      successCondition: result[0] < 0.01
+      failureLimit: 1
+      provider:
+        prometheus:
+          address: http://observability-dev-kube-pro-prometheus.observability:9090
+          query: |
+            sum(rate(api_http_requests_total{
+              namespace="microservices-dev",
+              status_code=~"5.."
+            }[1m]))
